@@ -2,14 +2,10 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
 import ProductCatalogList from '../components/products/product-catalog-list'
-import { getAllProducts, getFeaturedProducts } from './dummy-data'
+import { getAllProducts } from '../lib/dummy-data'
 
 export default function Home() {
   const allProducts = getAllProducts()
-
-	// return <section>
-	// 	<EventList items={featuredEvents}/>
-	// </section>
 
   return (
     <div className={styles.container}>
