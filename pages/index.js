@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css'
 import ProductCatalogList from '../components/products/product-catalog-list'
 import { getAllProducts } from '../lib/dummy-data'
 
-export default function Home() {
+function Home() {
   const allProducts = getAllProducts()
 
   return (
@@ -30,3 +30,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default Home
