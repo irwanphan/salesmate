@@ -3,19 +3,28 @@ import styles from '../styles/Home.module.css'
 import { useEffect, useState } from "react"
 
 import ProductCatalogList from '../components/products/product-catalog-list'
-import useSWR from 'swr'
-
-// import { getAllProducts } from '../lib/dummy-data'
+import router from 'next/router'
 
 function Home() {
   // const allProducts = getAllProducts()
-  
+  // const [ token, setToken ] = useState<string | undefined>()
   // // useState returns 2 el, 1:snapshot, 2:function for updating the state
   const [ isLoading, setIsLoading ] = useState(false)
   // // custom state, 1:loaded data, 2:function for updating the state
   const [ loadedProducts, setLoadedProducts ] = useState([])
 
-  const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc3BsLmNhbmdnaWguZGV2XC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTY0MTk3MTE3NCwiZXhwIjoxNjQyMDE0Mzc0LCJuYmYiOjE2NDE5NzExNzQsImp0aSI6ImphdGFONDNNSjU1ZVZNbUQiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.iWsAQYQ-mUmfPF9rNUFsG5bAcxGPKaccPP5s8NoVKHY'
+  let token = ''
+  if (typeof window !== "undefined") {
+  //   setToken(localStorage.getItem("token"))
+    token = localStorage.getItem("token")
+  }
+
+  useEffect(() => {
+    if (!token) {
+      router.replace("/login")
+    }
+  },[token])
+
   const myHeaders = new Headers({
       'Content-Type': 'application/json',
       'Accept': 'application/json',
